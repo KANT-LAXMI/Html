@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script>
+        function validateData() {
+            var s = document.getElementById("str").value;
+            var p = document.getElementById("pat").value;
+            var reg = new RegExp(p, "gi");
+            var arr = document.getElementsByName("operation");
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].checked) {
+                    var v = arr[i].value;
+                    break;
+                }
+            }
+            switch (v) {
+                case "search":
+                    result = s.search(reg);
+                    break;
+                case "match":
+                    result = s.match(reg);
+                    break;
+                case "replace":
+                    rep = prompt("enter new string");
+                    result = s.replace(reg, rep);
+                    break;
+                case "test":
+                    result = reg.test(s);
+                    break;
+            }
+            document.getElementById("mydiv").innerHTML = result;
+        }
+    </script>
+</head>
+
+<body>
+    String: <input type="text" name="str" id="str"><br>
+    Pattern: <input type="text" name="pat" id="pat"><br>
+
+    Operations:
+    <input type="radio" name="operation" id="search" value="search"><label for="search">Search</label>
+    <input type="radio" name="operation" id="match" value="match"><label for="match">Match</label>
+    <input type="radio" name="operation" id="replace" value="replace"><label for="replace">Replace</label>
+    <input type="radio" name="operation" id="test" value="test"><label for="test">Test</label><br>
+
+    <button type="button" name="btn" id="btn" value="btn" onclick="validateData()"><label>Show result</label> </button>
+    <div id="mydiv"></div>
+
+</body>
+
+</html>
