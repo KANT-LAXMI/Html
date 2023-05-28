@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <script>
+            arr=[];
+            function displayData(){
+                str="<table border='2' ><tr><th>Product id</th><th>Product name</th><th>Quantity</th><th>Price</th></tr>"
+                    for(var ob of arr){
+                        str+=`<tr><td>${ob.id}</td><td>${ob.name}</td><td>${ob.qty}</td><td>${ob.price}</td></tr>`
+                    }
+                   // str+="</table>";
+                document.getElementById("mydiv").innerHTML=str;
+            }
+            function clearForm(){
+                document.getElementById("id").value=""
+                document.getElementById("name").value=""
+                document.getElementById("qty").value=""
+                document.getElementById("price").value=""
+            }
+
+            function addProduct(){
+                var id=parseInt(document.getElementById("id").value)
+                var name=document.getElementById("name").value
+                var qty=parseInt(document.getElementById("qty").value)
+                var price=parseFloat(document.getElementById("price").value)
+                var ob={id:id,name:name,qty:qty,price:price}
+                arr.push(ob)
+                displayData()
+                clearForm()
+            }
+
+            function deleteProduct(){
+              var id=parseInt(document.getElementById("id").value)
+                var pos=arr.findIndex(a=>a.id===id)
+                if(pos!=-1){
+                  var ans=confirm( `${id} Do you really want to delete?`)
+                  if(ans){
+                    arr.splice(pos,1)
+                    displayData();
+                  }
+                }
+                clearForm()
+            }
+            function updateProduct(){
+                var id=parseInt(document.getElementById("id").value)
+                var pos=arr.findIndex(a=>a.id===id)
+                if(pos!=-1){
+                    var nqty=parseInt(prompt("enter quantity"))
+                    var nprice=parseFloat(prompt("enter price"))
+                    arr[pos].qty=nqty;
+                    arr[pos].price=nprice;
+                    displayData();
+                }
+                clearForm()
+            }
+
+        </script>
+   </head>
+    <body>
+        <form  onload="displayData()">
+            <table border="2" bgcolor="cyan">
+                <tbody>
+            <tr><td> Product id:</td> 
+                <td><input type="text" name="id" id="id" ></td></tr>
+            <tr><td> Product Name:</td>
+                <td><input type="text" name="name" id="name"></td></tr>
+           <tr><td>Product quantity: </td>
+            <td> <input type="text" name="qty" id="qty" ></td></tr>
+            <tr><td> Product price: </td>
+                <td> <input type="text" name="price" id="price"></td></tr><br>
+                 </tbody> 
+            </table>
+            <p></p>
+            <button type="button" id="btn" name="add" id="add" value="Add" onclick="addProduct()">Add Product</button>
+            <button type="button" id="btn" name="delete" id="delete" value="Delete" onclick="deleteProduct()">Delete product</button>
+            <button type="button" id="btn" name="update" id="update" value="Update" onclick="updateProduct()">Update product</button>
+            <div id="mydiv"></div>
+
+            
+
+        </form>
+    </body>
+</html>
