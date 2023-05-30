@@ -1,0 +1,37 @@
+
+<html >
+<head>
+    <style>
+        .myclass{
+            background-color: black;
+            color: white;
+            border: 20px;
+            width: 50%;
+            border-radius: 10px;
+        }
+        .myC{
+            background-color:aqua;
+            color:aqua;
+            text-shadow:4px 4px 4px red;
+            border: 2px solid black;
+            width: 70%;
+        }
+    </style>
+    <script src="/jQuery/JQUERY.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('h1').hover(function(){
+                $(this).addClass('myC').removeClass('myclass')
+            },function(){
+                $(this).addClass('myclass').removeClass('myC')
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1 class="myclass">
+        If you enjoy the fragrance of a ROSE,
+        you must accept the thorns which it bears.
+    </h1>
+</body>
+</html>
