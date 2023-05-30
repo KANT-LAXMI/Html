@@ -1,0 +1,48 @@
+<html>
+<head>
+    <script src="/jQuery/JQUERY.js"></script>
+    <script>
+     
+     $(document).ready(function(){
+        seats=[];
+       $('#show').click(function(){
+            $('#mydiv').html("SELECTED SEATS ARE :"+seats);
+       })
+
+       $('input[name=ticket]').change(function(){
+        if($(this).is(':checked')){
+            var sel=$(this).val();
+            var pos=seats.findIndex(a=>a===sel)
+            if(pos===-1){
+                seats.push(sel)
+            }
+        }else{
+            var pos=seats.findIndex(a=>a===sel)
+            if(pos!==-1)
+            seats.splice(pos,1)
+        }
+       })
+
+     })
+
+
+    </script>
+
+</head>
+<body>
+     MOVIE Tickets: <br>
+    <input type="checkbox" id="1" name="ticket" value="1"><label for="1">1</label>
+    <input type="checkbox" id="2" name="ticket" value="2"><label for="2">2</label>
+    <input type="checkbox" id="3" name="ticket" value="3"><label for="3">3</label>
+    <input type="checkbox" id="4" name="ticket" value="4"><label for="4">4</label>
+    <input type="checkbox" id="5" name="ticket" value="5"><label for="5">5</label><br>
+    <input type="checkbox" id="6" name="ticket" value="6"><label for="6">6</label>
+    <input type="checkbox" id="7" name="ticket" value="7"><label for="7">7</label>
+    <input type="checkbox" id="8" name="ticket" value="8"><label for="8">8</label>
+    <input type="checkbox" id="9" name="ticket" value="9"><label for="9">9</label>
+    <input type="checkbox" id="10" name="ticket" value="10"><label for="10">10</label><br>
+    <button type="button" id="show" name="show" value="show">SHOW SELECTED SEATS</button>
+    
+    <div id="mydiv"></div>
+</body>
+</html>
