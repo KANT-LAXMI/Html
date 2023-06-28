@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <style>
+            span{
+                color: red;
+            }            
+        </style>
+        <script>
+            function validateName(){
+                var n=document.getElementById('nm').value
+                if((n==='') ||(n.trim().length===0)){
+                    document.getElementById('er1').innerHTML="name cannot be blank"
+                    return false;
+                }
+                document.getElementById('er1').innerHTML=""
+                return true
+            }
+            function validateEmployeeCode(){
+                var a=parseInt(document.getElementById('ec').value) 
+                if((a==='')||(isNaN(a))){
+                    document.getElementById('er2').innerHTML="employee code should be suppplied"
+                    return false;
+                }
+                Document.getElementById('er2').innerHTML=''
+                return true;
+            }
+            function validateDepartment(){
+                var dept=document.getElementsByName('dept')
+                for(var i=0;i<dept.length;i++){
+                    if(dept[i].Checked){
+                        document.getElementById('er3').innerHTML=''
+                        return true;
+                    }
+                    document.getElementById('er3').innerHTML="please select department"
+                    return false;
+                }
+            }
+            function validateDate(){
+                var dat=Date.parse(document.getElementById('dt').value)
+                    
+                if(isNaN(dat)){
+                    documnet.getElementById('er4').innerHTML="please provide date"
+                    return false
+                }
+                documnet.getElementById('er4').innerHTML=""
+                    return true
+            }
+            function validateAddress(){
+                var add=document.getElementById('adr').value
+                if(add===''){
+                    document.getElementById('er5').innerHTML="please provide address"
+                    return false;
+                }
+                document.getElementById('er5').innerHTML=''
+            }
+        
+            function validateCheckbox(){
+                var str=''
+                cnt=0
+                var arr=document.getElementsByName('program')
+                for(var i=0;i<arr.length;i++){
+                    if(arr[i].Checked){
+                        str+=arr[i].value+','
+                        cnt=cnt+1
+                    }
+                    if(cnt>=3){
+                        document.getElementById('er6').innerHTML=''
+                        return false;
+                    }
+                    document.getElementById('er6').innerHTML='atleast select 3 program'
+                }
+            }
+   
+    
+
+
+
+                function validateProgramAttended(){
+                  var arr=document.getElementsByName('Program')
+                  for(var i=0;i<arr.length;i++){
+                    if(arr[i].checked){
+                        document.getElementById('er7').innerHTML=''
+                        return true;
+                    }
+                    document.getElementById('er7').innerHTML="please select one option"
+                    return false
+                  }
+
+            }
+
+        function validateData(){
+            validateName();
+            validateEmployeeCode();
+            validateDepartment();
+            validateDate();
+            validateAddress();
+            validateCheckbox();
+            validateProgramAttended()
+
+        }
+        </script>
+    </head>
+    <body>
+        <form>
+            <table border="2">
+                <tr>
+                    <td><label for="nm">Name:</label></td>
+                    <td><input type="text" name="nm" id="nm" autofocus minlength="3" maxlength="20"><span>*</span><span id="er1"></span></td>
+                </tr>
+                <tr>
+                    <td><label for="ec">Employee Code:</label></td>
+                    <td><input type="text" name="ec" id="ec"><span>*</span><span id="er2"></span></td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td><input type="radio" name="dept" id="ad" value="ad"><label for="ad">ADMIN</label><br>
+                    <input type="radio" name="dept" id="hr" value="hr"><label for="hr">HR</label><br>
+                    <input type="radio" name="dept" id="tech" value="tech"><label for="tech">Technical</label><br>
+                    <input type="radio" name="dept" id="acct" value="acct"><label for="acct">Accounts</label>
+                    <span id="er3"></span>
+                </td>
+                </tr>
+                <tr>
+                    <td><label for="dt">Date Of Joining</label></td>
+                    <td><input type="date" id="dt" value="dt" name="dt"><span id="er4"></span></td>
+                </tr>
+                <tr>
+                    <td><label for="adr">Address</label></td>
+                    <td><textarea name="adr" id="adr" cols="15" rows="5"></textarea><span>*</span><span id="er5"></span></td>
+                </tr>
+                <tr>
+                    <td>Training Program Attendend</td>
+                    <td><input type="checkbox" name="program" id="ht" value="ht"><label for="ht">HTML/DHTML</label><br>
+                        <input type="checkbox" name="program" id="jv" value="jv"><label for="jv">Java</label><br>
+                        <input type="checkbox" name="program" id="clnt" value="clnt"><label for="clnt">Client/Server</label><br>
+                        <input type="checkbox" name="program" id="net" value="net"><label for="net">.Net</label>
+                        <span id="er6"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Training Program need to be attended</td>
+                    <td><select name="Program" >
+                        <option value="java">JAVA</option>
+                        <option value=".net">.NET</option>
+                        <option value="html">HTML</option>
+                        <option value="dsa">DSA</option></span>
+                    </select>
+                    <span>*</span><span id="er7"></span>
+                </td>
+                </tr>
+                <tr>
+                    <td> Send information at</td>
+                    <td><a href="mailto:kantlaxmi1357@gmail.com">kantlaxmi1357@gmail.com</a><span>*</span><span err="7"></span></td>
+                </tr>
+            </table>
+            <input type="button" name="btn" id="btn" value="Submit" onclick="validateData()">
+        </form>
+    </body>
+</html>
